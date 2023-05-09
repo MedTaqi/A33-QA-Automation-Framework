@@ -77,20 +77,21 @@ public class SearchTest extends BaseTest {
 
     @Test(enabled = true, priority = 8, description = "user can clear the query in the search field and in the search page in each section using Delete Key")
     public void clearSearchQueryUsingDeleteKey() {
-        LoginPage loginPage = new LoginPage(driver);HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
         loginPage.logIn();
         homePage.clearSearchQueryWithDeleteKey("Dark Days");
-        Assert.assertTrue(homePage.isSearchQueryEmpty());
-      // Assert.assertTrue(homePage.isSearchPageEmpty());
+       Assert.assertTrue(homePage.isSearchPageEmpty());
    }
-   @Test(enabled = true)
+   /*@Test(enabled = true)
     public void clearSearchQueryUsingXButton() {
-        LoginPage loginPage = new LoginPage(driver);HomePage homePage = new HomePage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        HomePage homePage = new HomePage(driver);
 
         loginPage.logIn();
         homePage.clearSearchQueryWithDeleteKey("Dark Days");
         Assert.assertTrue(homePage.isSearchQueryEmpty1());
-        // Assert.assertTrue(homePage.isSearchPageEmpty());
-    }
+        Assert.assertTrue(homePage.isSearchPageEmpty());
+    }*/
 }

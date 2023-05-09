@@ -5,9 +5,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import javax.xml.xpath.XPath;
 import java.time.Duration;
 
 public class HomePage extends BasePage {
@@ -17,6 +19,14 @@ public class HomePage extends BasePage {
     WebElement searchField;
     @FindBy(css = "[role='button']")
     WebElement Xbutton;
+
+    @FindBys ({
+            @FindBy(xpath = "//section[@data-testid='song-excerpts']//span[contains(text(),'Dark Days')]"),
+            @FindBy(xpath = "//section[@class='artists']//*[@title='Dan Brasco']"),
+            @FindBy(xpath = "//*[@data-testid='album-excerpts']//*[@title='Dark Days EP by Grav']")
+    })
+    static
+    WebElement EmptyPage;
 
     public HomePage(WebDriver givenDriver) {
         super(givenDriver);
@@ -104,40 +114,19 @@ public class HomePage extends BasePage {
                 (By.xpath("//*[@id='searchExcerptsWrapper']//span[contains(text(),'Dark Days')]")));
         return songExInCaseSensitive.isDisplayed();
     }
-
-    public void clearSearchPageWithDeleteKey() {
-        searchField.click();
-        searchField.sendKeys(Keys.DELETE);
-    }
-
-    public static boolean isSearchPageEmpty() {
-        WebElement EmptySearchPageVerification = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//*[@id='searchExcerptsWrapper']//*[contains(text(),'Find songs, artists, and albums,')]")));
-        return EmptySearchPageVerification.isDisplayed();
-    }
-
     public void clearSearchQueryWithDeleteKey(String songName) {
         searchField.click();
         searchField.sendKeys(songName);
         searchField.sendKeys(Keys.DELETE);
     }
 
-    public static boolean isSearchQueryEmpty() {
-        WebElement EmptySearchQueryVerification = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//*[@id='searchForm']//input['not(text())']")));
-        return EmptySearchQueryVerification.isDisplayed();
+    public static boolean isSearchPageEmpty() {
+        EmptyPage.isDisplayed();
+        return EmptyPage.isDisplayed();
     }
-
-    public WebElement clearSearchQueryWithXButton(String songName) {
-        searchField.click();
-        searchField.sendKeys(songName);
-        actions.moveToElement(Xbutton).perform();
-        return Xbutton;
-    }
-
-    public static boolean isSearchQueryEmpty1() {
-        WebElement EmptySearchQueryVerification = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//*[@id='searchForm']//input['not(text())']")));
-        return EmptySearchQueryVerification.isDisplayed();
-    }
+    //public static boolean isSearchPageEmpty() {
+      //  WebElement EmptySearchPageVerification = wait.until(ExpectedConditions.visibilityOfElementLocated
+       //         (By.xpath("//*[@id='searchExcerptsWrapper']//*[contains(text(),'Find songs, artists, and albums,')]")));
+      //  return EmptySearchPageVerification.isDisplayed();
+    //}
 }
