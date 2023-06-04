@@ -29,7 +29,7 @@ Actions actions;
         driver = new ChromeDriver(ops);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Actions actions = new Actions(driver);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
         url = BaseUrl;
         driver.get(url);

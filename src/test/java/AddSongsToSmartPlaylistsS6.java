@@ -26,7 +26,9 @@ public class AddSongsToSmartPlaylistsS6 extends BaseTest{
     homePage.addSongWithEdit();
     homePage.chooseEdit();
     homePage.editPlaylist();
-    homePage.hoverOverToAlbums();
+    //homePage.hoverOverToAlbums();
+    homePage.doubleClick();
+    //homePage.hoverOverToField();
     homePage.chooseAlbumName("Airbit");
     homePage.clickSave();
     Assert.assertTrue(homePage.updateMsgDisplayed());

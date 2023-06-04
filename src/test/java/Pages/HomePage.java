@@ -64,15 +64,27 @@ public class HomePage extends BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(clickOnTitle)).click();
         return this;
     }
-    public HomePage hoverOverToAlbums(){
+    public HomePage hoverOverToAlbums() {
         WebElement albums = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//*[@id='mainWrapper']/div/div/div/form/div/div[2]/div[1]/div[2]/select[1]/option[2]")));
-        actions.moveToElement(albums).click().perform();
+                (By.xpath("//*[@id='mainWrapper']//select[@name='model[]']//option[contains(text(),'Album')]")));
+        actions.moveToElement(albums).perform();
+        return this;
+    }
+    public HomePage doubleClick(){
+        WebElement albums = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[@id='mainWrapper']//select[@name='model[]']//option[contains(text(),'Album')]")));
+        actions.doubleClick(albums).perform();
+        return this;
+    }
+    public HomePage hoverOverToField(){
+        WebElement albums = wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//*[@name='value[]']")));
+        actions.moveToElement(albums).perform();
         return this;
     }
     public HomePage chooseAlbumName(String Album){
-        wait.until(ExpectedConditions.visibilityOf(titleField)).click();
-        titleField.sendKeys(Album);
+        WebElement album = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[name='value[]']")));
+       album.sendKeys(Album);
         return this;
     }
     public HomePage clickSave(){
