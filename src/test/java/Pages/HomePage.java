@@ -1,6 +1,7 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -67,24 +68,19 @@ public class HomePage extends BasePage {
     public HomePage hoverOverToAlbums() {
         WebElement albums = wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//*[@id='mainWrapper']//select[@name='model[]']//option[contains(text(),'Album')]")));
-        actions.moveToElement(albums).perform();
+        albums.click();
         return this;
     }
-    public HomePage doubleClick(){
-        WebElement albums = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//*[@id='mainWrapper']//select[@name='model[]']//option[contains(text(),'Album')]")));
-        actions.doubleClick(albums).perform();
-        return this;
-    }
-    public HomePage hoverOverToField(){
-        WebElement albums = wait.until(ExpectedConditions.visibilityOfElementLocated
-                (By.xpath("//*[@name='value[]']")));
-        actions.moveToElement(albums).perform();
+    public HomePage hoverToField(){
+        WebElement album = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='mainWrapper']//input[@name='value[]']")));
+        actions.doubleClick(album).perform();
         return this;
     }
     public HomePage chooseAlbumName(String Album){
-        WebElement album = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("[name='value[]']")));
-       album.sendKeys(Album);
+        WebElement album = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='mainWrapper']//input[@name='value[]']")));
+        album.click();
+     album.sendKeys(Keys.chord(Keys.COMMAND+"a",Keys.BACK_SPACE));
+     album.sendKeys(Album);
         return this;
     }
     public HomePage clickSave(){

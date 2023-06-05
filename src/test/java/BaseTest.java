@@ -27,7 +27,7 @@ Actions actions;
         ChromeOptions ops = new ChromeOptions();
         ops.addArguments("--disable-notifications", "--remote-allow-origins=*", "--incognito", "--start-maximized");
         driver = new ChromeDriver(ops);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         Actions actions = new Actions(driver);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.manage().window().maximize();
