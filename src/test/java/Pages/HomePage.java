@@ -14,4 +14,16 @@ public class HomePage extends BasePage{
         WebElement success = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("img.avatar")));
         return success.isDisplayed();
     }
+    public HomePage PlayASong(){
+        WebElement song =wait.until(ExpectedConditions.elementToBeClickable
+                        (By.xpath("//ol[@class='top-song-list']//span[contains(text(),'Take my Hand (ID 1696)')]")));
+        actions.doubleClick(song).perform();
+        return this;
+    }
+    public HomePage clickCurrentQueue(){
+        WebElement Queue  =wait.until(ExpectedConditions.elementToBeClickable
+                (By.xpath("//*[@id='sidebar']//a[contains(text(),'Current Queue')]")));
+        actions.doubleClick(Queue).perform();
+        return this;
+    }
 }
