@@ -26,7 +26,8 @@ public static Actions actions;
     @BeforeMethod
     @Parameters({"BaseURL"})
     public static void launchBrowser(String BaseURL){
-     driver = pickBrowser(System.getProperty("browser"));
+        //System.setProperty("web-driver.chrome.driver","/Users/mohamedtaqi/Desktop/chromedriver-mac-x64.zip ") ;
+    driver = pickBrowser(System.getProperty("browser"));
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     actions = new Actions(driver);
      wait = new WebDriverWait(driver,Duration.ofSeconds(10));
